@@ -77,6 +77,13 @@ The UI will open at `http://localhost:5173`
 ### Reset to Normal
 Click **"Reset"** to restore the original DNS records and return to normal operation.
 
+Before Poisoning
+<img width="388" height="320" alt="image" src="https://github.com/user-attachments/assets/7f2898a6-ad68-471b-a0d2-e1e374c586ec" />
+
+After Poisoning
+<img width="377" height="242" alt="image" src="https://github.com/user-attachments/assets/63bdbb77-f4be-4138-bef1-d47f5b01e196" />
+
+
 ## 🔐 DNSSEC Security (NEW!)
 
 This lab now includes full DNSSEC implementation to demonstrate how DNS Security Extensions prevent cache poisoning attacks.
@@ -93,6 +100,11 @@ This lab now includes full DNSSEC implementation to demonstrate how DNS Security
 - **Cryptographically signs** DNS records
 - **Validates** responses to ensure authenticity
 - **Prevents** attackers from forging DNS responses
+
+DNSSEC ENABLED
+<img width="435" height="302" alt="image" src="https://github.com/user-attachments/assets/892bf36a-d8c5-444d-975c-73435879472f" />
+
+<img width="480" height="387" alt="image" src="https://github.com/user-attachments/assets/142ba08c-744e-4235-b88e-dd0dff599eda" />
 
 
 
