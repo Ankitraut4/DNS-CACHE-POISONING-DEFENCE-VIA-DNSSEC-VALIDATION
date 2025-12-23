@@ -1,0 +1,19 @@
+options {
+    directory "/var/cache/bind";
+    listen-on { any; };
+    allow-query { any; };
+    recursion no;
+    dnssec-validation no;
+};
+
+zone "example.local" {
+    type master;
+    file "/etc/bind/zones/example.local.zone";
+    allow-transfer { any; };
+};
+
+zone "example.com" {
+    type master;
+    file "/etc/bind/zones/example.com.zone.signed";
+    allow-transfer { any; };
+};

@@ -1,0 +1,2 @@
+trial,mode,outcome,blocked_by_dnssec,duration_sec
+1,dnssec,blocked,True,2.8982

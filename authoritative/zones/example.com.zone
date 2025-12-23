@@ -1,0 +1,8 @@
+$TTL 300
+@       IN  SOA  ns1.example.com. admin.example.com. (
+                 2024111901 3600 1800 604800 300 )
+@       IN  NS   ns1.example.com.
+ns1     IN  A    10.0.1.10
+@       IN  A    10.0.1.20
+www     IN  A    10.0.1.20
+

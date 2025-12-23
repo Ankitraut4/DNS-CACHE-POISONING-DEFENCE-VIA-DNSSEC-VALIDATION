@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Bank - Secure Online Banking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 30px;
+            color: white;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #dc2626;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 12px;
+            background: #fee2e2;
+            border-radius: 6px;
+            color: #991b1b;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .warning-icon {
+            font-size: 18px;
+        }
+        .ip-display {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: #fef2f2;
+            border-radius: 6px;
+            border: 2px solid #ef4444;
+        }
+        .ip-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .ip-value {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ef4444;
+        }
+        .warning-banner {
+            background: #fef2f2;
+            border: 2px solid #ef4444;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .warning-text {
+            color: #991b1b;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="warning-banner">
+            <div class="warning-text">⚠️ FAKE PHISHING SITE - DO NOT ENTER REAL CREDENTIALS ⚠️</div>
+        </div>
+        
+        <div class="header">
+            <div class="logo">🎣</div>
+            <h1>Example Bank</h1>
+            <p class="subtitle">Secure Online Banking Portal</p>
+        </div>
+        
+        <form>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            
+            <button type="submit" class="btn">Login Securely</button>
+        </form>
+        
+        <div class="security-badge">
+            <span class="warning-icon">⚠️</span>
+            <span>FAKE PHISHING WEBSITE - CREDENTIALS STOLEN!</span>
+        </div>
+        
+        <div class="ip-display">
+            <div class="ip-label">Server IP Address (MALICIOUS)</div>
+            <div class="ip-value">10.0.100.100</div>
+        </div>
+    </div>
+    
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            alert('🚨 CREDENTIALS STOLEN! 🚨\n\n' +
+                  'Username: ' + (username || '[empty]') + '\n' +
+                  'Password: ' + (password || '[empty]') + '\n\n' +
+                  'This is a FAKE website at 10.0.100.100\n' +
+                  'Your credentials would have been sent to attackers!');
+        });
+    </script>
+</body>
+</html>

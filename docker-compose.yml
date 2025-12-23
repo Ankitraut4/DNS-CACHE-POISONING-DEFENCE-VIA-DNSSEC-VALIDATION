@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  authoritative_dns:
+    image: ubuntu/bind9:latest
+    container_name: authoritative_dns
+    networks:
+      dns_lab:
+        ipv4_address: 10.0.1.10
+    volumes:
+      - ./authoritative/named.conf:/etc/bind/named.conf:rw
+      - ./authoritative/named.conf.dnssec:/etc/bind/named.conf.dnssec:ro
+      - ./authoritative/zones:/etc/bind/zones:rw
+      - ./authoritative/keys:/etc/bind/keys:rw
+      - ./authoritative/setup-dnssec.sh:/etc/bind/setup-dnssec.sh:ro
+      - ./authoritative/setup-dnssec-simple.sh:/etc/bind/setup-dnssec-simple.sh:ro
+      - ./data/logs/authoritative:/var/log/named:rw
+    command: ["named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind"]
+    user: root
+
+  resolver_dns:
+    image: ubuntu/bind9:latest
+    container_name: resolver_dns
+    hostname: resolver
+    networks:
+      dns_lab:
+        ipv4_address: 10.0.0.53
+    volumes:
+      - ./resolver/named.conf:/etc/bind/named.conf:ro
+      - ./data/logs/resolver:/var/log/named:rw
+    command: ["named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind"]
+    user: root
+
+  attacker:
+    build: ./attacker
+    container_name: attacker
+    hostname: attacker
+    networks:
+      dns_lab:
+        ipv4_address: 10.0.2.100
+    volumes:
+      - ./attacker:/app:rw
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    privileged: true  # Needed for iptables
+    command: tail -f /dev/null
+
+  real_website:
+    build: ./real_website
+    container_name: real_website
+    hostname: real-website
+    networks:
+      dns_lab:
+        ipv4_address: 10.0.1.20
+    ports:
+      - "8080:80"
+
+  fake_website:
+    build: ./fake_website
+    container_name: fake_website
+    hostname: fake-website
+    networks:
+      dns_lab:
+        ipv4_address: 10.0.100.100
+    ports:
+      - "8081:80"
+
+networks:
+  dns_lab:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/16
